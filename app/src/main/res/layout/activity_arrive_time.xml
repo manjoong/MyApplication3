@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <!--여기부터 CONTENT-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainBg"
+        android:orientation="vertical"
+        android:weightSum="4">
+
+        <!--즐겨찾는 버스정보 보여주는 창-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:layout_margin="10dp"
+            android:layout_weight="1">
+
+            <!--첫번째 층(표지판 이미지, 종점 ,해쉬태그)-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="10"
+                android:layout_weight="5.0">
+                <!--표지판 이미지-->
+                <LinearLayout
+                    android:layout_weight="1.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bussign" />
+                </LinearLayout>
+
+                <!--버스정보(종점, 방면, 해쉬태그) -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+                    <!--종점-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="전북대학교 (농협 앞)"
+                        android:textColor="@color/black"
+                        android:textSize="15sp" />
+                    <!--방면-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="[31043] 국민은행 오거리 방면"
+                        android:textSize="10sp" />
+                    <!--해쉬태그-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="#전북대 #구정문 #덕진공원 #대학로 #신정문"
+                        android:textColor="@color/hashTag"
+                        android:textSize="10sp" />
+
+                </LinearLayout>
+                <!--메뉴버튼-->
+                <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.5"
+                    android:gravity="right|top">
+
+                    <ImageButton
+                        android:layout_width="30dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="4dp"
+                        android:background="@color/mainColor"
+                        android:src="@drawable/menu" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--두번째 층 (구분선)-->
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="10"
+                android:layout_weight="1">
+                <view
+                    android:layout_weight="9"
+                    android:background="@color/black"
+                    android:layout_width="0dp"
+                    android:layout_height="2dp"></view>
+            </LinearLayout>
+
+            <!--3번째 층 (버스번호, 도착시간)-->
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:weightSum="6"
+                android:layout_weight="4">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="108"
+                            android:textColor="@color/boldText"
+                            android:textSize="25sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="8sp"
+                            android:text="[본선]" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_weight="0.1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:weightSum="10"
+                        android:layout_marginRight="5dp"
+                        android:gravity="center">
+                        <View
+                            android:layout_weight="8"
+                            android:layout_width="1dp"
+                            android:layout_height="0dp"
+                            android:background="@color/black"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="4.9"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/timeFont"
+                            android:text="3분 30초 " />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="20sp"
+                            android:textColor="@color/black"
+                            android:text="후 도착예정 " />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="8sp"
+                                android:text="현재 중앙여고 정류장" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+
+
+    </LinearLayout>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <!--여기부터 CONTENT-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainBg"
+        android:orientation="vertical">
+
+        <!--즐겨찾는 버스정보 보여주는 창-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/rounded"
+            android:orientation="vertical">
+
+            <!--첫번째 층(표지판 이미지, 종점 ,해쉬태그)-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <!--표지판 이미지-->
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/bussign" />
+                </LinearLayout>
+
+            <!--버스정보(종점, 방면, 해쉬태그) -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+                <!--종점-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:text="전북대학교 (농협 앞)" />
+                <!--방면-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="10sp"
+                    android:text="[31043] 국민은행 오거리 방면" />
+                <!--해쉬태그-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/hashTag"
+                    android:textSize="10sp"
+                    android:text="#전북대 #구정문 #덕진공원 #대학로 #신정문" />
+
+            </LinearLayout>
+            <!--메뉴버튼-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_marginTop="4dp"
+                    android:background="@color/mainColor"
+                    android:src="@drawable/menu" />
+            </LinearLayout>
+            </LinearLayout>
+
+            <!--2번째 층(구분선)-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="12dp"
+                android:layout_marginLeft="12dp">
+                <view
+                    android:background="@color/mainColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></view>
+            </LinearLayout>
+
+            <!--3번째 층-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--탈 수 있는 버스 목록-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:text="108 102 112"
+                        android:textColor="@color/boldText"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"/>
+
+
+</LinearLayout>
+
+
+
+</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+    <!--여기부터 CONTENT-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:weightSum="8">  <!--8은 한페이지에 보여질 정류장 아이템의 갯수-->
+
+
+        <!--정류장 1개 아이템-->
+        <!--가로로 레이아웃을 만들어서 그림 부분과 텍스트 부분 나눔-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <!--그림 부분-->
+            <LinearLayout
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2">
+
+                <!--레일과 버스이미지를 합쳐야 하므로 FrameLayout 으로 구성-->
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <!-- 선+화살표+선 => 레일 이미지 -->
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:weightSum="10">
+
+                        <!--선-->
+                        <View
+                            android:layout_gravity="center"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:background="@color/black"
+                            android:visibility="visible"
+                            ></View>
+                        <!--화살표-->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="2"
+                            android:layout_gravity="center"
+                            android:src="@drawable/bottom_sign"
+                            android:visibility="visible" />
+                        <!--선-->
+                        <View
+                            android:layout_gravity="center"
+                            android:layout_width="2dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="4"
+                            android:background="@color/black"
+                            ></View>
+                    </LinearLayout>
+
+                    <!--버스+번호판 => 버스 이미지-->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center_vertical"
+                        android:weightSum="10"
+                        android:visibility="visible" >
+                        <!--버스 이미지-->
+                        <ImageView
+                            android:layout_gravity="center"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_weight="10"
+                            android:src="@drawable/schoolbus" />
+                        <!--녹색 테두리를 쓰기 위해 리니어 안에 텍스트 뷰-->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="10"
+                            android:background="@drawable/down_arrow">
+                            <!--버스 밑에 버스 번호-->
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="1337"
+                                android:textColor="@color/colorPrimaryDark" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <!--텍스트 부분(정류장 이름, 버스번호, 구분선-->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="8"
+                android:orientation="vertical"
+                android:weightSum="10">
+
+                <!--텍스트뷰는 웬만하면 wrap_content 로 하고 리니어는 match_parent로-->
+                <!--정류장 이름-->
+                <TextView
+                    android:gravity="bottom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="4.9"
+                    android:text="마당재"
+                    android:singleLine="true"
+                    android:textColor="@color/black" />
+
+                <!--버스번호-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="4.9"
+                    android:singleLine="true"
+                    android:text="30764" />
+
+                <!--구분선-->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.2"
+                    android:layout_marginRight="30dp"
+                    android:background="@color/busline"></View>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
+
+
+
+
+
