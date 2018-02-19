@@ -53,7 +53,7 @@ public class TalkListActivity extends AppCompatActivity {
         btn_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), CommunityActivity.class);
+                Intent intent = new Intent(v.getContext(), WriteTalkActivity.class);
 
                 //액티비티 시작!
                 startActivity(intent);
