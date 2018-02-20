@@ -8,9 +8,9 @@ import java.util.ArrayList;
  */
 
 public class Talk_CallBackItem {
-    public Talk_CallBackItem() {
-        results = new ArrayList<>();
-    }
+//    public Talk_CallBackItem() {
+//        results = new ArrayList<>();
+//    }
 
     private ArrayList<Data> results;  //여기서 results를 맞춰줘야해
 

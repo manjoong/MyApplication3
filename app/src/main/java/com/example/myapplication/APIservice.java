@@ -42,7 +42,7 @@ public interface APIservice {
 
     @FormUrlEncoded
     @POST("insert_new.php")
-    Call<Talk_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd, @Field("t_content") String t_content, @Field("t_title") String t_title);
+    Call<Talk_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd,  @Field("t_title") String t_title, @Field("t_content") String t_content);
 
 //    @Multipart
 //    @POST("insert.php")

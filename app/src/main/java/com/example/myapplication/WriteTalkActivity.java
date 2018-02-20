@@ -69,10 +69,10 @@ public class WriteTalkActivity extends AppCompatActivity {
         });
 
         initialize_toolbar();
-        index();
+        //index();
     }
 
-    public void index() {
+    /*public void index() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -92,7 +92,7 @@ public class WriteTalkActivity extends AppCompatActivity {
                 Log.e("에러다 짜샤", t.getMessage());
             }
         });
-    }
+    }*/
 
     public void post() {
 
@@ -113,11 +113,16 @@ public class WriteTalkActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
                 Log.d("--------------성공!", response.body().getData().toString());
+                setResult(RESULT_OK);
+                finish();
             }
 
             @Override
             public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
-                Log.e("Not Response", t.getLocalizedMessage());
+
+                Log.e("Not Response", call.clone().toString());
+                Log.e("Not Response", call.toString());
+                Log.e("Not Response", t.getMessage());
             }
         });
     }

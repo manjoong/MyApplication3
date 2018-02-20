@@ -56,7 +56,7 @@ public class TalkListActivity extends AppCompatActivity {
                 Intent intent = new Intent(v.getContext(), WriteTalkActivity.class);
 
                 //액티비티 시작!
-                startActivity(intent);
+                startActivityForResult(intent, 0);
 
             }
         });
@@ -129,4 +129,13 @@ public class TalkListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 0) {
+            if(resultCode == RESULT_OK){
+                index();
+            }
+        }
+    }//onActivityResult
 }
