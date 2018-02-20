@@ -23,26 +23,26 @@ public interface APIservice {
 
 
 //
-        @GET("connect.php")
-        Call<Talk_CallBackItem> getTalk(
-                @Query("num") String num);
-
-
-    @FormUrlEncoded
-    @POST("insert.php")
-    Call<Talk_CallBackItem> writeTalk(@Field("num") Integer num, @Field("name") String name, @Field("password") String password, @Field("content") String content);
-
-
-
-
-//    @GET("connect_new.php")
-//    Call<Talk_CallBackItem_new> getTalk(
-//            @Query("t_num") String t_num);
+//        @GET("connect.php")
+//        Call<Talk_CallBackItem> getTalk(
+//                @Query("num") String num);
 //
 //
 //    @FormUrlEncoded
-//    @POST("insert_new.php")
-//    Call<Talk_CallBackItem_new> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd, @Field("t_content") String t_content, @Field("t_title") String t_title);
+//    @POST("insert.php")
+//    Call<Talk_CallBackItem> writeTalk(@Field("num") Integer num, @Field("name") String name, @Field("password") String password, @Field("content") String content);
+
+
+
+
+    @GET("connect_new.php")
+    Call<Talk_CallBackItem> getTalk(
+            @Query("t_num") String t_num);
+
+
+    @FormUrlEncoded
+    @POST("insert_new.php")
+    Call<Talk_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd, @Field("t_content") String t_content, @Field("t_title") String t_title);
 
 //    @Multipart
 //    @POST("insert.php")

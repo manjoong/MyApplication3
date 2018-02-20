@@ -89,6 +89,7 @@ public class TalkListActivity extends AppCompatActivity {
         APIservice retrofitService = retrofit.create(APIservice.class);
         Call<Talk_CallBackItem> call = retrofitService.getTalk("0");
         call.enqueue(new Callback<Talk_CallBackItem>() {
+
             @Override
             public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
                 DebugLog.v(response.body().getData().toString());
@@ -102,7 +103,7 @@ public class TalkListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
-                Log.d("에러다 짜샤","eee");
+                Log.d("에러다 짜샤",t.getMessage());
             }
         });
     }

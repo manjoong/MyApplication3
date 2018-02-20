@@ -16,15 +16,15 @@ android:orientation="vertical">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/input_num" />
+        android:id="@+id/input_id" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/input_name" />
+        android:id="@+id/input_pwd" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/input_password" />
+        android:id="@+id/input_title" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="80dp"
