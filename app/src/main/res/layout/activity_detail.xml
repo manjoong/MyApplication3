@@ -103,6 +103,7 @@
                     android:layout_gravity="center_vertical"
                     android:textSize="10dp"
                     android:text="익명"
+                    android:id="@+id/txt_name"
                     android:textColor="#bababa"
                     android:background="@null"/>
 

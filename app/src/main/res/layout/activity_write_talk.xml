@@ -19,7 +19,7 @@
         android:layout_weight="7">
         <EditText
             android:layout_weight="1.48"
-            android:id="@+id/txt_name"
+            android:id="@+id/input_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:hint="제목"
@@ -33,7 +33,7 @@
 
         <EditText
             android:layout_weight="8.46"
-            android:id="@+id/txt_content"
+            android:id="@+id/input_content"
             android:hint="내용"
             android:layout_height="0dp"
             android:layout_width="match_parent"
@@ -103,6 +103,7 @@
                     android:layout_gravity="center_vertical"
                     android:textSize="10dp"
                     android:text="익명"
+                    android:id="@+id/input_id"
                     android:textColor="#bababa"
                     android:background="@null"/>
 
@@ -112,6 +113,7 @@
                     android:textSize="10dp"
                     android:layout_gravity="center_vertical"
                     android:hint="비밀번호"
+                    android:id="@+id/input_pwd"
                     android:textColor="#bababa"
                     android:background="@null"/>
             </LinearLayout>
