@@ -96,32 +96,30 @@ public class WriteTalkActivity extends AppCompatActivity {
 
     public void post() {
 
-        String id = input_id.getText().toString();
-        String pwd = input_pwd.getText().toString();
-        String title = input_title.getText().toString();
-        String content = input_content.getText().toString();
+        String t_user_id = input_id.getText().toString();
+        String t_pwd = input_pwd.getText().toString();
+        String t_title = input_title.getText().toString();
+        String t_content = input_content.getText().toString();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
+
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Talk_CallBackItem> call = retrofitService.writeTalk(id, pwd, title, content);
+        Call<Talk_CallBackItem> call = retrofitService.writeTalk(t_user_id, t_pwd, t_title, t_content);
 
         call.enqueue(new Callback<Talk_CallBackItem>() {
             @Override
             public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
-                Log.d("--------------성공!", response.body().getData().toString());
+                Log.d("--------------성공!", response.body().getResults().toString());
                 setResult(RESULT_OK);
                 finish();
             }
 
             @Override
             public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
-
-                Log.e("Not Response", call.clone().toString());
-                Log.e("Not Response", call.toString());
                 Log.e("Not Response", t.getMessage());
             }
         });

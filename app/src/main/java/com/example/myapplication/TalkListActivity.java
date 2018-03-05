@@ -92,10 +92,10 @@ public class TalkListActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
-                DebugLog.v(response.body().getData().toString());
+                DebugLog.v(response.body().getResults().toString());
                 //Log.v("Debug : ", response.body().getData().toString());
                 //이렇게 어댑터에 데이터를 보내주고
-                adapter = new CommunityTalkAdapter(getApplicationContext(), response.body().getData()); //appcompaty에선 context로 해줘야됨
+                adapter = new CommunityTalkAdapter(getApplicationContext(), response.body().getResults()); //appcompaty에선 context로 해줘야됨
 //                textViewIndex.setText(response.body().getData().get(0).getName().toString());
                 //어댑터를 연결시키면 끝이다.
                 recyclerView.setAdapter(adapter);
