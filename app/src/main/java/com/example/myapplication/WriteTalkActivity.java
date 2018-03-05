@@ -72,27 +72,6 @@ public class WriteTalkActivity extends AppCompatActivity {
         //index();
     }
 
-    /*public void index() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(API_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Talk_CallBackItem> call = retrofitService.getTalk("0");
-        call.enqueue(new Callback<Talk_CallBackItem>() {
-            @Override
-            public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
-                Log.d("김만중", response.body().getData().toString());
-//                textViewIndex.setText(response.body().getData().get(0).getPassword().toString());
-            }
-
-            @Override
-            public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
-                Log.e("에러다 짜샤", t.getMessage());
-            }
-        });
-    }*/
 
     public void post() {
 
@@ -108,18 +87,18 @@ public class WriteTalkActivity extends AppCompatActivity {
 
 
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Talk_CallBackItem> call = retrofitService.writeTalk(t_user_id, t_pwd, t_title, t_content);
+        Call<Post_CallBackItem> call = retrofitService.writeTalk(t_user_id, t_pwd, t_title, t_content);
 
-        call.enqueue(new Callback<Talk_CallBackItem>() {
+        call.enqueue(new Callback<Post_CallBackItem>() {
             @Override
-            public void onResponse(Call<Talk_CallBackItem> call, Response<Talk_CallBackItem> response) {
-                Log.d("--------------성공!", response.body().getResults().toString());
+            public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
+                Log.d("--------------성공!", response.body().toString());
                 setResult(RESULT_OK);
                 finish();
             }
 
             @Override
-            public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
+            public void onFailure(Call<Post_CallBackItem> call, Throwable t) {
                 Log.e("Not Response", t.getMessage());
             }
         });
