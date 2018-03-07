@@ -87,7 +87,7 @@ public class TalkListActivity extends AppCompatActivity {
                 .build();
 
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Talk_CallBackItem> call = retrofitService.getTalk("0");
+        Call<Talk_CallBackItem> call = retrofitService.getTalk();
         call.enqueue(new Callback<Talk_CallBackItem>() {
 
             @Override
@@ -99,6 +99,7 @@ public class TalkListActivity extends AppCompatActivity {
 //                textViewIndex.setText(response.body().getData().get(0).getName().toString());
                 //어댑터를 연결시키면 끝이다.
                 recyclerView.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
             }
 
             @Override

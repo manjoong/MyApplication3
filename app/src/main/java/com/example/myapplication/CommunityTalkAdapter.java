@@ -36,6 +36,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
         //온바인드뷰홀더는 아이템을 세팅하거나 스크롤링 할때 호출되는 애다. 때문에 position이 필요하다.
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
+//            holder.no.setText(items.get(position).getT_no());
             holder.id.setText(items.get(position).getT_user_id());
             holder.content.setText(items.get(position).getT_content());
             holder.date.setText(items.get(position).getT_write_date());
@@ -49,7 +50,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
         //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
         class ViewHolder extends RecyclerView.ViewHolder{
-            TextView content, id, title, date;
+            TextView content, id, title, date, no;
             public ViewHolder(View itemView) {
                 super(itemView);
                 itemView.setOnClickListener(new View.OnClickListener(){
@@ -67,6 +68,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
                         v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
                     }
                                             });
+                no = itemView.findViewById(R.id.tv_text_no);
                 title = itemView.findViewById(R.id.tv_text_title);
                 content = itemView.findViewById(R.id.tv_text_content);
                 id = itemView.findViewById(R.id.tv_text_id);

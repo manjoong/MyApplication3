@@ -5,7 +5,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 
 /**
  * Created by 마루소프트 on 2018-01-29.
@@ -36,13 +35,19 @@ public interface APIservice {
 
 
     @GET("connect_new.php")
-    Call<Talk_CallBackItem> getTalk(
-            @Query("t_num") String t_num);
+    Call<Talk_CallBackItem> getTalk();
+
+    @GET("connect_reply.php")
+    Call<Reply_CallBackItem> getReply();
 
 
-    @FormUrlEncoded
-    @POST("insert_new.php")
+    @FormUrlEncoded //게시글
+    @POST("insert_new.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
     Call<Post_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd,  @Field("t_title") String t_title, @Field("t_content") String t_content);
+
+    @FormUrlEncoded //댓글
+    @POST("insert_reply.php")
+    Call<Post_CallBackItem> writeReply(@Field("r_t_no") int r_t_no, @Field("r_user_id") String r_user_id,  @Field("r_content") String r_content);
 
 //    @Multipart
 //    @POST("insert.php")

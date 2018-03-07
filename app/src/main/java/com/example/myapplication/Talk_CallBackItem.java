@@ -12,94 +12,6 @@ public class Talk_CallBackItem {
             results = new ArrayList<>();
         }
 
-//    public  boolean isResponseSuccess() {
-//        if (this.getMeta() == null) {
-//            return false;
-//        } else {
-//            if (this.getMeta().getState().equals("OK")) {
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        }
-//    }
-//
-//
-//    private Meta meta;
-//
-//    public Meta getMeta ()
-//    {
-//        return meta;
-//    }
-//
-//    public void setMeta (Meta meta)
-//    {
-//        this.meta = meta;
-//    }
-//
-//    @Override
-//    public String toString()
-//    {
-//        return "ClassPojo [meta = "+meta+"]";
-//    }
-//    public class Meta
-//    {
-//        private String state;
-//
-//        private String code;
-//
-//        private String msg;
-//
-//        private String type;
-//
-//        public String getState ()
-//        {
-//            return state;
-//        }
-//
-//        public void setState (String state)
-//        {
-//            this.state = state;
-//        }
-//
-//        public String getCode ()
-//        {
-//            return code;
-//        }
-//
-//        public void setCode (String code)
-//        {
-//            this.code = code;
-//        }
-//
-//        public String getMsg ()
-//        {
-//            return msg;
-//        }
-//
-//        public void setMsg (String msg)
-//        {
-//            this.msg = msg;
-//        }
-//
-//        public String getData() {
-//            return type;
-//        }
-//
-//        public void setData(String data) {
-//            this.type = type;
-//        }
-//
-//        @Override
-//        public String toString() {
-//            return "Meta{" +
-//                    "state='" + state + '\'' +
-//                    ", code='" + code + '\'' +
-//                    ", msg='" + msg + '\'' +
-//                    ", data='" + type + '\'' +
-//                    '}';
-//        }
-//    }
 
     private ArrayList<Data> results;  //여기서 results를 맞춰줘야해
 
@@ -114,7 +26,7 @@ public class Talk_CallBackItem {
                 '}';
     }
 
-    public class Data extends Talk_CallBackItem implements Serializable {
+    public class Data implements Serializable {
         int t_no;
         String t_user_id;
         String t_pwd;

@@ -22,7 +22,7 @@
             android:id="@+id/input_title"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:hint="제목"
+            android:hint="※제목을 적어주세요."
             android:textColor="#bababa"
             android:background="@null" />
         <View
@@ -34,7 +34,7 @@
         <EditText
             android:layout_weight="8.46"
             android:id="@+id/input_content"
-            android:hint="내용"
+            android:hint="※내용을 적어주세요. \n\n1. 처음 비밀번호는 0000 입니다. \n2. 욕설, 비방 등 법적 문제의 소지가 있는 경우 차단 및 신고, 처벌 받으실 수 있습니다."
             android:layout_height="0dp"
             android:layout_width="match_parent"
             android:inputType="textMultiLine"
@@ -108,11 +108,12 @@
                     android:background="@null"/>
 
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="40dp"
                     android:layout_height="20dp"
                     android:textSize="10dp"
                     android:layout_gravity="center_vertical"
-                    android:hint="비밀번호"
+                    android:text="0000"
                     android:id="@+id/input_pwd"
                     android:textColor="#bababa"
                     android:background="@null"/>
