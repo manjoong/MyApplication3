@@ -148,6 +148,8 @@ public class DetailActivity extends AppCompatActivity {
                 Log.e("왜 안되는건데...?", t.getMessage());
             }
         });
+
+        input_r_content.setText(""); //글쓰고 나서 텍스트 창 초기화
     }
 
     void initialize_toolbar() {
@@ -177,7 +179,7 @@ public class DetailActivity extends AppCompatActivity {
                 .build();
 
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Reply_CallBackItem> call = retrofitService.getReply();
+        Call<Reply_CallBackItem> call = retrofitService.getReply(no);
         call.enqueue(new Callback<Reply_CallBackItem>() {
 
             @Override

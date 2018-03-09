@@ -5,6 +5,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 /**
  * Created by 마루소프트 on 2018-01-29.
@@ -38,7 +39,9 @@ public interface APIservice {
     Call<Talk_CallBackItem> getTalk();
 
     @GET("connect_reply.php")
-    Call<Reply_CallBackItem> getReply();
+    Call<Reply_CallBackItem> getReply(
+            @Query("r_t_no") int r_t_no
+    );
 
 
     @FormUrlEncoded //게시글
