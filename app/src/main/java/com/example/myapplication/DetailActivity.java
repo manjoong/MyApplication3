@@ -33,14 +33,20 @@ public class DetailActivity extends AppCompatActivity {
     TextView txt_content;
     TextView txt_date;
     TextView txt_id;
+    TextView txt_like;
     TextView tv_title;
     ImageButton btn_r_write;
+    ImageButton btn_like;
+
     int no;
+    int like;
     String title;
     String content;
     String id;
+    String pwd;
     String date;
     private String root_talk_no;
+    private String string_like;
     private EditText input_r_id;
     private EditText input_r_content;
     RecyclerView recyclerView;
@@ -55,6 +61,7 @@ public class DetailActivity extends AppCompatActivity {
         input_r_id = (EditText) findViewById(R.id.input_r_id);
         input_r_content = (EditText) findViewById(R.id.input_r_content);
         btn_r_write = (ImageButton) findViewById(R.id.btn_r_write);
+        btn_like = (ImageButton) findViewById(R.id.btn_like);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         //댓글버튼 클릭시! alert창
@@ -79,7 +86,31 @@ public class DetailActivity extends AppCompatActivity {
                         });
                 AlertDialog alert = alert_confirm.create();
                 alert.show();
+            }
+        });
 
+        //좋아요 버튼 클릭시
+        btn_like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
+                alert_confirm.setMessage("이 댓글을 좋아요 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("-------제발!!후후루루루-성공!", string_like.toString()  );
+
+                                update_like();
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                AlertDialog alert = alert_confirm.create();
+                alert.show();
             }
         });
 
@@ -93,13 +124,19 @@ public class DetailActivity extends AppCompatActivity {
         TextView txt_date = (TextView) findViewById(R.id.txt_date);
         TextView txt_title = (TextView) findViewById(R.id.txt_title);
         TextView txt_content = (TextView) findViewById(R.id.txt_content);
+        TextView txt_like = (TextView) findViewById(R.id.txt_like);
         txt_title.setFocusable(false);
         txt_title.setClickable(false);
         txt_content.setFocusable(false);
         txt_content.setClickable(false);
 
         no=getIntent().getIntExtra("no",1);
-        root_talk_no =  String.valueOf(no);
+        root_talk_no =  String.valueOf(no); //인트형의 글 번호를 스트링 형으로 변환한 것
+        like=getIntent().getIntExtra("like",3);
+
+        string_like = String.valueOf(like); //인트형의 좋아요 수를 스트링 형으로 변환한 것
+
+        pwd = getIntent().getStringExtra("pwd");
         id = getIntent().getStringExtra("id");
         date = getIntent().getStringExtra("date");
         title = getIntent().getStringExtra("title");
@@ -109,14 +146,44 @@ public class DetailActivity extends AppCompatActivity {
         txt_date.setText(date);
         txt_title.setText(title);
         txt_content.setText(content);
+        txt_like.setText(string_like);
 
         Log.d("-------------제발!!-성공!", id.toString());
 
+    }
+
+    //좋아요 기능
+    public  void update_like() {
+        initialize();
+        string_like = String.valueOf(like+1);
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+
+        APIservice retrofitService = retrofit.create(APIservice.class);
+        Call<Post_CallBackItem> call = retrofitService.updateLike(no, like);
+
+        call.enqueue(new Callback<Post_CallBackItem>() {
+            @Override
+            public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
+                Log.d("좋아요 기능 성공!", string_like.toString());
+                txt_like.setText(string_like);
+                setResult(RESULT_OK);
+            }
+
+            @Override
+            public void onFailure(Call<Post_CallBackItem> call, Throwable t) {
+                Log.e("좋아요 기능 실패ㅠㅠ", t.getMessage());
+            }
+
+        });
 
 
     }
-
-    //댓글 쓰기=>오류
+    //댓글 써서 보내는 함수
     public void post() {
         final int r_t_no = no; //원례 글의 글번호
         final String r_user_id = input_r_id.getText().toString(); //닉네임을 읽어옴
@@ -171,7 +238,7 @@ public class DetailActivity extends AppCompatActivity {
         //recyclerView.setAdapter(adapter);
     }
 
-    //base url설정, 파싱 성공시 => 어댑터와 연결 실패시 => 처리
+    //댓글 목록 띄워 주는 함수
     public void index() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)

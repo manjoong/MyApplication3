@@ -41,6 +41,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
             holder.content.setText(items.get(position).getT_content());
             holder.date.setText(items.get(position).getT_write_date());
             holder.title.setText(items.get(position).getT_title());
+            holder.like.setText(String.valueOf(items.get(position).getT_like()));
         }
 
         @Override
@@ -50,7 +51,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
         //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
         class ViewHolder extends RecyclerView.ViewHolder{
-            TextView content, id, title, date, no;
+            TextView content, id, title, date, no, like;
             public ViewHolder(View itemView) {
                 super(itemView);
                 itemView.setOnClickListener(new View.OnClickListener(){
@@ -61,10 +62,12 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
                         Intent intent = new Intent(v.getContext() , DetailActivity.class);
                         //변수를 해당 activity로 넘긴다.
                         intent.putExtra("title", items.get(getAdapterPosition()).getT_title());
+                        intent.putExtra("pwd", items.get(getAdapterPosition()).getT_pwd());
                         intent.putExtra("id", items.get(getAdapterPosition()).getT_user_id());
                         intent.putExtra("date", items.get(getAdapterPosition()).getT_write_date());
                         intent.putExtra("content", items.get(getAdapterPosition()).getT_content());
                         intent.putExtra("no", items.get(getAdapterPosition()).getT_no());
+                        intent.putExtra("like", items.get(getAdapterPosition()).getT_like());
                         v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
                     }
                                             });
@@ -73,6 +76,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
                 content = itemView.findViewById(R.id.tv_text_content);
                 id = itemView.findViewById(R.id.tv_text_id);
                 date = itemView.findViewById(R.id.tv_text_date);
+                like = itemView.findViewById(R.id.tv_text_like);
             }
         }
     }

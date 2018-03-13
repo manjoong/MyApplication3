@@ -87,7 +87,7 @@ public class WriteTalkActivity extends AppCompatActivity {
 
 
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Post_CallBackItem> call = retrofitService.writeTalk(t_user_id, t_pwd, t_title, t_content);
+        Call<Post_CallBackItem> call = retrofitService.writeTalk(t_user_id, t_pwd, t_title, t_content, 0);
 
         call.enqueue(new Callback<Post_CallBackItem>() {
             @Override

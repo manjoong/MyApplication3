@@ -33,6 +33,7 @@ public class Talk_CallBackItem {
         String t_title;
         String t_content;
         String t_write_date;
+        int t_like;
 
         public int getT_no() {
             return t_no;
@@ -82,24 +83,34 @@ public class Talk_CallBackItem {
             this.t_write_date = t_write_date;
         }
 
-        public Data(int t_no, String t_user_id, String t_pwd, String t_title, String t_content, String t_write_date) {
+        public int getT_like() {
+            return t_like;
+        }
+
+        public void setT_like(int t_like) {
+            this.t_like = t_like;
+        }
+
+        public Data(int t_no, String t_user_id, String t_pwd, String t_title, String t_content, String t_write_date, int t_like) {
             this.t_no = t_no;
             this.t_user_id = t_user_id;
             this.t_pwd = t_pwd;
             this.t_title = t_title;
             this.t_content = t_content;
             this.t_write_date = t_write_date;
+            this.t_like = t_like;
         }
 
         @Override
         public String toString() {
             return "Data{" +
-                    "t_no='" + t_no + '\'' +
+                    "t_no=" + t_no +
                     ", t_user_id='" + t_user_id + '\'' +
                     ", t_pwd='" + t_pwd + '\'' +
                     ", t_title='" + t_title + '\'' +
                     ", t_content='" + t_content + '\'' +
                     ", t_write_date='" + t_write_date + '\'' +
+                    ", t_like=" + t_like +
                     '}';
         }
     }

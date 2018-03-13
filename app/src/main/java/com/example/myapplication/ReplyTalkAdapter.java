@@ -55,7 +55,7 @@ public class ReplyTalkAdapter extends RecyclerView.Adapter<ReplyTalkAdapter.View
 
     //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
     class ViewHolder extends RecyclerView.ViewHolder{
-        TextView content, id, date, no, t_no;
+        TextView content, id, date, no, t_no, like;
         public ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(new View.OnClickListener(){
@@ -75,6 +75,7 @@ public class ReplyTalkAdapter extends RecyclerView.Adapter<ReplyTalkAdapter.View
             });
             content = itemView.findViewById(R.id.tv_text_content);
             id = itemView.findViewById(R.id.tv_text_id);
+            like = itemView.findViewById(R.id.tv_text_like);
             date = itemView.findViewById(R.id.tv_text_date);
         }
     }

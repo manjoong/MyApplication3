@@ -46,7 +46,11 @@ public interface APIservice {
 
     @FormUrlEncoded //게시글
     @POST("insert_new.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
-    Call<Post_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd,  @Field("t_title") String t_title, @Field("t_content") String t_content);
+    Call<Post_CallBackItem> writeTalk(@Field("t_user_id") String t_user_id, @Field("t_pwd") String t_pwd,  @Field("t_title") String t_title, @Field("t_content") String t_content, @Field("t_like") int t_like);
+
+    @FormUrlEncoded //좋아요 기능
+    @POST("like_update.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
+    Call<Post_CallBackItem> updateLike(@Field("t_no") int t_no, @Field("t_like") int t_like);
 
     @FormUrlEncoded //댓글
     @POST("insert_reply.php")
