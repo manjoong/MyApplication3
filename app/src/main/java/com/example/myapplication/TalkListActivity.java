@@ -42,6 +42,8 @@ public class TalkListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.talk_list);
         btn_write = (ImageButton) findViewById(R.id.btn_write);
+        View btn_delete = (ImageButton) findViewById(R.id.btn_delete); //글 삭제 버튼  없애기
+        btn_delete.setVisibility(View.GONE);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
         textViewIndex = (TextView) findViewById(R.id.txtRetrofitTest);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -79,6 +81,7 @@ public class TalkListActivity extends AppCompatActivity {
 
 
 
+
     //base url설정, 파싱 성공시 => 어댑터와 연결 실패시 => 처리
     public void index() {
         Retrofit retrofit = new Retrofit.Builder()
@@ -95,7 +98,7 @@ public class TalkListActivity extends AppCompatActivity {
                 DebugLog.v(response.body().getResults().toString());
                 //Log.v("Debug : ", response.body().getData().toString());
                 //이렇게 어댑터에 데이터를 보내주고
-                adapter = new CommunityTalkAdapter(getApplicationContext(), response.body().getResults()); //appcompaty에선 context로 해줘야됨
+                adapter = new CommunityTalkAdapter(TalkListActivity.this, response.body().getResults()); //appcompaty에선 context로 해줘야됨
 //                textViewIndex.setText(response.body().getData().get(0).getName().toString());
                 //어댑터를 연결시키면 끝이다.
                 recyclerView.setAdapter(adapter);
@@ -133,7 +136,7 @@ public class TalkListActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == 0) {
+        if (requestCode == 0 || requestCode == 1002) {
             if(resultCode == RESULT_OK){
                 index();
             }

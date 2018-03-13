@@ -38,6 +38,14 @@
                         android:src="@drawable/edit1"
                         android:background="@android:color/transparent"/>
                     <ImageButton
+                        android:id="@+id/btn_delete"
+                        android:layout_marginRight="15dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="right|center_vertical"
+                        android:src="@drawable/trash"
+                        android:background="@android:color/transparent"/>
+                    <ImageButton
                         android:layout_marginRight="15dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

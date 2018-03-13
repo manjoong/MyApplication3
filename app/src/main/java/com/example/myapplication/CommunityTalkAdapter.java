@@ -1,6 +1,6 @@
 package com.example.myapplication;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,19 +10,19 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
-
 /**
  * Created by 마루소프트 on 2018-02-01.
  */
 
+//start, result 값비교 갱신
+
 
     public class CommunityTalkAdapter extends RecyclerView.Adapter<CommunityTalkAdapter.ViewHolder> {
-        Context context;
+    Activity context;
         ArrayList<Talk_CallBackItem.Data> items;
 
         //커뮤니티 토크 어댑터 함수를 만듬으로써 context와 item을 상속해 준다.
-        public CommunityTalkAdapter(Context context, ArrayList<Talk_CallBackItem.Data> items) {
+        public CommunityTalkAdapter(Activity context, ArrayList<Talk_CallBackItem.Data> items) {
             this.context = context;
             this.items = items;
         }
@@ -59,7 +59,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
                     public void onClick(View v) {
                         System.out.println(getPosition());
                         //어댑터에서는 this를 쓸 수 없으므로 context를 쓴다. context는 이 레이아웃의 변수들?
-                        Intent intent = new Intent(v.getContext() , DetailActivity.class);
+                        Intent intent = new Intent(context , DetailActivity.class);
                         //변수를 해당 activity로 넘긴다.
                         intent.putExtra("title", items.get(getAdapterPosition()).getT_title());
                         intent.putExtra("pwd", items.get(getAdapterPosition()).getT_pwd());
@@ -68,9 +68,10 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
                         intent.putExtra("content", items.get(getAdapterPosition()).getT_content());
                         intent.putExtra("no", items.get(getAdapterPosition()).getT_no());
                         intent.putExtra("like", items.get(getAdapterPosition()).getT_like());
-                        v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+                        context.startActivityForResult(intent, 1002);
                     }
                                             });
+
                 no = itemView.findViewById(R.id.tv_text_no);
                 title = itemView.findViewById(R.id.tv_text_title);
                 content = itemView.findViewById(R.id.tv_text_content);

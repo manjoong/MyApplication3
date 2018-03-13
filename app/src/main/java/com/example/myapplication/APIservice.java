@@ -35,10 +35,10 @@ public interface APIservice {
 
 
 
-    @GET("connect_new.php")
+    @GET("connect_new.php") // 게시글 목혹
     Call<Talk_CallBackItem> getTalk();
 
-    @GET("connect_reply.php")
+    @GET("connect_reply.php")  //댓글 목록
     Call<Reply_CallBackItem> getReply(
             @Query("r_t_no") int r_t_no
     );
@@ -52,9 +52,13 @@ public interface APIservice {
     @POST("like_update.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
     Call<Post_CallBackItem> updateLike(@Field("t_no") int t_no, @Field("t_like") int t_like);
 
-    @FormUrlEncoded //댓글
+    @FormUrlEncoded //댓글 입력
     @POST("insert_reply.php")
     Call<Post_CallBackItem> writeReply(@Field("r_t_no") int r_t_no, @Field("r_user_id") String r_user_id,  @Field("r_content") String r_content);
+
+    @FormUrlEncoded //게시글 삭제
+    @POST("delete_talk.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
+    Call<Post_CallBackItem> deleteTalk(@Field("t_no") int t_no);
 
 //    @Multipart
 //    @POST("insert.php")

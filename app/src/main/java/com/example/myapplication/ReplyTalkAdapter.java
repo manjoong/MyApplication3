@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,8 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-
-import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 /**
  * Created by 마루소프트 on 2018-02-01.
@@ -58,21 +55,21 @@ public class ReplyTalkAdapter extends RecyclerView.Adapter<ReplyTalkAdapter.View
         TextView content, id, date, no, t_no, like;
         public ViewHolder(View itemView) {
             super(itemView);
-            itemView.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    System.out.println(getPosition());
-                    //어댑터에서는 this를 쓸 수 없으므로 context를 쓴다. context는 이 레이아웃의 변수들?
-                    Intent intent = new Intent(v.getContext() , DetailActivity.class);
-                    //변수를 해당 activity로 넘긴다.
-                    intent.putExtra("no", items.get(getAdapterPosition()).getR_no());
-                    intent.putExtra("t_no", items.get(getAdapterPosition()).getR_t_no());
-                    intent.putExtra("id", items.get(getAdapterPosition()).getR_user_id());
-                    intent.putExtra("date", items.get(getAdapterPosition()).getR_write_date());
-                    intent.putExtra("content", items.get(getAdapterPosition()).getR_content());
-                    v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener(){
+//                @Override
+//                public void onClick(View v) {
+//                    System.out.println(getPosition());
+//                    //어댑터에서는 this를 쓸 수 없으므로 context를 쓴다. context는 이 레이아웃의 변수들?
+//                    Intent intent = new Intent(v.getContext() , DetailActivity.class);
+//                    //변수를 해당 activity로 넘긴다.
+//                    intent.putExtra("no", items.get(getAdapterPosition()).getR_no());
+//                    intent.putExtra("t_no", items.get(getAdapterPosition()).getR_t_no());
+//                    intent.putExtra("id", items.get(getAdapterPosition()).getR_user_id());
+//                    intent.putExtra("date", items.get(getAdapterPosition()).getR_write_date());
+//                    intent.putExtra("content", items.get(getAdapterPosition()).getR_content());
+//                    v.getContext().startActivity(intent.addFlags(FLAG_ACTIVITY_NEW_TASK));
+//                }
+//            });
             content = itemView.findViewById(R.id.tv_text_content);
             id = itemView.findViewById(R.id.tv_text_id);
             like = itemView.findViewById(R.id.tv_text_like);

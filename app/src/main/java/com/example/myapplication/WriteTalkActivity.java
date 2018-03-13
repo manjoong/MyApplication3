@@ -42,6 +42,8 @@ public class WriteTalkActivity extends AppCompatActivity {
         input_content = findViewById(R.id.input_content);
         tv_title = (TextView) findViewById(R.id.tv_title);
         btn_write = (ImageButton) findViewById(R.id.btn_write);
+        View btn_delete = (ImageButton) findViewById(R.id.btn_delete); //글 삭제 버튼  없애기
+        btn_delete.setVisibility(View.GONE);
 
 
         //공유버튼 클릭시! alert창

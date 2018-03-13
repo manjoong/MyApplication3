@@ -35,8 +35,9 @@ public class DetailActivity extends AppCompatActivity {
     TextView txt_id;
     TextView txt_like;
     TextView tv_title;
-    ImageButton btn_r_write;
-    ImageButton btn_like;
+    ImageButton btn_r_write; //댓글 보내는 버튼
+    ImageButton btn_like; //좋아요 버튼
+    ImageButton btn_delete; //글 삭제 버튼
 
     int no;
     int like;
@@ -51,6 +52,7 @@ public class DetailActivity extends AppCompatActivity {
     private EditText input_r_content;
     RecyclerView recyclerView;
     ReplyTalkAdapter adapter;
+    CommunityTalkAdapter adapter_talk_list;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,8 +62,11 @@ public class DetailActivity extends AppCompatActivity {
 
         input_r_id = (EditText) findViewById(R.id.input_r_id);
         input_r_content = (EditText) findViewById(R.id.input_r_content);
-        btn_r_write = (ImageButton) findViewById(R.id.btn_r_write);
+        View btn_write = (ImageButton) findViewById(R.id.btn_write); //게시글 쓰는 버튼 => 안보이게 할것
+        btn_write.setVisibility(View.GONE);
+        btn_r_write = (ImageButton) findViewById(R.id.btn_r_write); //댓글 쓰는 버튼
         btn_like = (ImageButton) findViewById(R.id.btn_like);
+        btn_delete = (ImageButton) findViewById(R.id.btn_delete);
         recyclerView = (RecyclerView) findViewById(R.id.recycler);
 
         //댓글버튼 클릭시! alert창
@@ -89,12 +94,42 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        //글삭제 클릭시! alert창
+        btn_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
+                final EditText pwd = new EditText(DetailActivity.this);
+                alert_confirm.setView(pwd);
+                alert_confirm.setMessage("글을 삭제하시겠습니까? 비밀번호를 입력해 주세요.").setCancelable(false).setPositiveButton("확인",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String value = pwd.getText().toString();
+
+                                Log.d("-------제발!!후후루루루-성공!", value.toString()  );
+                                delete();
+                            }
+                        }).setNegativeButton("취소",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                return;
+                            }
+                        });
+                AlertDialog alert = alert_confirm.create();
+                alert.show();
+            }
+        });
+
         //좋아요 버튼 클릭시
         btn_like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
                 AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
+
                 alert_confirm.setMessage("이 댓글을 좋아요 하시겠습니까?").setCancelable(false).setPositiveButton("확인",
+
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -133,7 +168,6 @@ public class DetailActivity extends AppCompatActivity {
         no=getIntent().getIntExtra("no",1);
         root_talk_no =  String.valueOf(no); //인트형의 글 번호를 스트링 형으로 변환한 것
         like=getIntent().getIntExtra("like",3);
-
         string_like = String.valueOf(like); //인트형의 좋아요 수를 스트링 형으로 변환한 것
 
         pwd = getIntent().getStringExtra("pwd");
@@ -149,13 +183,13 @@ public class DetailActivity extends AppCompatActivity {
         txt_like.setText(string_like);
 
         Log.d("-------------제발!!-성공!", id.toString());
-
     }
 
     //좋아요 기능
     public  void update_like() {
-        initialize();
-        string_like = String.valueOf(like+1);
+        like += 1;
+        final TextView txt_like = (TextView) findViewById(R.id.txt_like);
+        string_like = String.valueOf(like);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(API_URL)
@@ -180,8 +214,6 @@ public class DetailActivity extends AppCompatActivity {
             }
 
         });
-
-
     }
     //댓글 써서 보내는 함수
     public void post() {
@@ -213,6 +245,32 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<Post_CallBackItem> call, Throwable t) {
                 Log.e("왜 안되는건데...?", t.getMessage());
+            }
+        });
+
+        input_r_content.setText(""); //글쓰고 나서 텍스트 창 초기화
+    }
+
+    //게시글 삭제하는 함수
+    public void delete() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(API_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        APIservice retrofitService = retrofit.create(APIservice.class);
+        Call<Post_CallBackItem> call = retrofitService.deleteTalk(no);
+        call.enqueue(new Callback<Post_CallBackItem>() {
+            @Override
+            public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
+                Log.d("------------글삭제 전송 성공", response.body().toString());
+                setResult(RESULT_OK);
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Post_CallBackItem> call, Throwable t) {
+                Log.e("글삭제 왜 안되는건데...?", t.getMessage());
             }
         });
 
@@ -284,6 +342,7 @@ public class DetailActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
