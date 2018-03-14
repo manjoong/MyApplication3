@@ -21,6 +21,11 @@ import java.util.ArrayList;
     Activity context;
         ArrayList<Talk_CallBackItem.Data> items;
 
+
+
+
+
+
         //커뮤니티 토크 어댑터 함수를 만듬으로써 context와 item을 상속해 준다.
         public CommunityTalkAdapter(Activity context, ArrayList<Talk_CallBackItem.Data> items) {
             this.context = context;
@@ -36,12 +41,14 @@ import java.util.ArrayList;
         //온바인드뷰홀더는 아이템을 세팅하거나 스크롤링 할때 호출되는 애다. 때문에 position이 필요하다.
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-//            holder.no.setText(items.get(position).getT_no());
             holder.id.setText(items.get(position).getT_user_id());
             holder.content.setText(items.get(position).getT_content());
             holder.date.setText(items.get(position).getT_write_date());
             holder.title.setText(items.get(position).getT_title());
             holder.like.setText(String.valueOf(items.get(position).getT_like()));
+            holder.count.setText(String.valueOf(items.get(position).getT_r_count()));
+
+
         }
 
         @Override
@@ -51,7 +58,7 @@ import java.util.ArrayList;
 
         //뷰홀더라는 애는 아이템안에 들어갈 텍스트등의 내용을 초기화 하는 역할이다.
         class ViewHolder extends RecyclerView.ViewHolder{
-            TextView content, id, title, date, no, like;
+            TextView content, id, title, date, no, like, count;
             public ViewHolder(View itemView) {
                 super(itemView);
                 itemView.setOnClickListener(new View.OnClickListener(){
@@ -72,12 +79,12 @@ import java.util.ArrayList;
                     }
                                             });
 
-                no = itemView.findViewById(R.id.tv_text_no);
                 title = itemView.findViewById(R.id.tv_text_title);
                 content = itemView.findViewById(R.id.tv_text_content);
                 id = itemView.findViewById(R.id.tv_text_id);
                 date = itemView.findViewById(R.id.tv_text_date);
                 like = itemView.findViewById(R.id.tv_text_like);
+                count = itemView.findViewById(R.id.tv_text_view);
             }
         }
     }

@@ -23,7 +23,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import util.DebugLog;
 
-import static android.icu.text.DisplayContext.LENGTH_SHORT;
 import static com.example.myapplication.APIservice.API_URL;
 
 /**
@@ -38,7 +37,6 @@ public class DetailActivity extends AppCompatActivity {
     TextView txt_like;
     TextView txt_view;
     TextView tv_title;
-
     ImageButton btn_r_write; //댓글 보내는 버튼
     ImageButton btn_like; //좋아요 버튼
     ImageButton btn_delete; //글 삭제 버튼
@@ -65,6 +63,8 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         initialize();
         initialize_toolbar();
+//        view = adapter.items.size();
+
         input_r_id = (EditText) findViewById(R.id.input_r_id);
         input_r_content = (EditText) findViewById(R.id.input_r_content);
         View btn_write = (ImageButton) findViewById(R.id.btn_write); //게시글 쓰는 버튼 => 안보이게 할것
@@ -85,7 +85,7 @@ public class DetailActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.d("-------제발!!후후루루루-성공!", root_talk_no.toString()  );
                                 post();
-                                index();
+//                                index();
                             }
                         }).setNegativeButton("취소",
                         new DialogInterface.OnClickListener() {
@@ -159,6 +159,8 @@ public class DetailActivity extends AppCompatActivity {
 
         setRecyclerView();
         index();
+//        Log.e("댓글 수 조회하기!", String.valueOf(adapter.items.size()));
+//        check_view();
     }
 
     public void initialize() {
@@ -168,7 +170,8 @@ public class DetailActivity extends AppCompatActivity {
         TextView txt_title = (TextView) findViewById(R.id.txt_title);
         TextView txt_content = (TextView) findViewById(R.id.txt_content);
         TextView txt_like = (TextView) findViewById(R.id.txt_like);
-        TextView txt_lik = (TextView) findViewById(R.id.txt_view);
+        txt_view = (TextView) findViewById(R.id.txt_view);
+
         txt_title.setFocusable(false);
         txt_title.setClickable(false);
         txt_content.setFocusable(false);
@@ -191,9 +194,14 @@ public class DetailActivity extends AppCompatActivity {
         txt_content.setText(content);
         txt_like.setText(string_like);
 
-
         Log.d("-------------제발!!-성공!", id.toString());
     }
+
+    //댓글 갯수 세는 기능
+//    public void check_view(){
+//        TextView txt_view = (TextView) findViewById(R.id.txt_view);
+//        txt_view.setText(adapter.items.size());
+//    }
 
     //좋아요 기능
     public  void update_like() {
@@ -214,7 +222,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
                 Log.d("좋아요 기능 성공!", string_like.toString());
-                Toast.makeText(getApplicationContext(),  adapter.items.size() + "개의 댓글이 있습니다.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),  "감사합니다.", Toast.LENGTH_LONG).show();
                 txt_like.setText(string_like);
                 setResult(RESULT_OK);
             }
@@ -245,10 +253,13 @@ public class DetailActivity extends AppCompatActivity {
             public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
                 Log.d("-------------데이터 전송 성공", response.body().toString());
                 Reply_CallBackItem.Data data = new Reply_CallBackItem.Data();
+                view += 1;
                 data.setR_t_no(r_t_no);
                 data.setR_user_id(r_user_id);
                 data.setR_content(r_content);
                 adapter.addItem(data);
+                txt_view.setText(String.valueOf(view));
+                setResult(RESULT_OK);
 
                 //adapter.notifyDataSetChanged();
             }
@@ -283,6 +294,7 @@ public class DetailActivity extends AppCompatActivity {
                 finish();
                     Toast.makeText(getApplicationContext(),  id + "님의 글이 삭제되었습니다.", Toast.LENGTH_LONG).show();
 
+                    adapter.items.size();
                 }
 
             }
@@ -344,7 +356,11 @@ public class DetailActivity extends AppCompatActivity {
 
                     }
                 });*/
-                Log.e("데이터 읽어오기 성공", response.body().toString());
+                view=adapter.items.size();
+
+                Log.e("데이터 읽어오기 성공", String.valueOf(view));
+
+                txt_view.setText(String.valueOf(view));
             }
 
             @Override

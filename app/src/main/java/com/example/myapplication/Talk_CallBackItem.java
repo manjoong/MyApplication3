@@ -34,6 +34,7 @@ public class Talk_CallBackItem {
         String t_content;
         String t_write_date;
         int t_like;
+        int t_r_count;
 
         public int getT_no() {
             return t_no;
@@ -91,7 +92,14 @@ public class Talk_CallBackItem {
             this.t_like = t_like;
         }
 
-        public Data(int t_no, String t_user_id, String t_pwd, String t_title, String t_content, String t_write_date, int t_like) {
+        public int getT_r_count() {
+            return t_r_count;
+        }
+        public void setT_r_count(int t_r_count) {
+            this.t_r_count = t_r_count;
+        }
+
+        public Data(int t_no, String t_user_id, String t_pwd, String t_title, String t_content, String t_write_date, int t_like, int t_r_count) {
             this.t_no = t_no;
             this.t_user_id = t_user_id;
             this.t_pwd = t_pwd;
@@ -99,6 +107,7 @@ public class Talk_CallBackItem {
             this.t_content = t_content;
             this.t_write_date = t_write_date;
             this.t_like = t_like;
+            this.t_r_count = t_r_count;
         }
 
         @Override
@@ -111,6 +120,7 @@ public class Talk_CallBackItem {
                     ", t_content='" + t_content + '\'' +
                     ", t_write_date='" + t_write_date + '\'' +
                     ", t_like=" + t_like +
+                    ", t_r_count=" + t_r_count +
                     '}';
         }
     }
