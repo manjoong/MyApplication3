@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,6 +23,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import util.DebugLog;
 
+import static android.icu.text.DisplayContext.LENGTH_SHORT;
 import static com.example.myapplication.APIservice.API_URL;
 
 /**
@@ -34,18 +36,22 @@ public class DetailActivity extends AppCompatActivity {
     TextView txt_date;
     TextView txt_id;
     TextView txt_like;
+    TextView txt_view;
     TextView tv_title;
+
     ImageButton btn_r_write; //댓글 보내는 버튼
     ImageButton btn_like; //좋아요 버튼
     ImageButton btn_delete; //글 삭제 버튼
 
     int no;
     int like;
+    int view;
     String title;
     String content;
     String id;
     String pwd;
     String date;
+    String pwd_confirm;
     private String root_talk_no;
     private String string_like;
     private EditText input_r_id;
@@ -59,7 +65,6 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         initialize();
         initialize_toolbar();
-
         input_r_id = (EditText) findViewById(R.id.input_r_id);
         input_r_content = (EditText) findViewById(R.id.input_r_content);
         View btn_write = (ImageButton) findViewById(R.id.btn_write); //게시글 쓰는 버튼 => 안보이게 할것
@@ -99,16 +104,19 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alert_confirm = new AlertDialog.Builder(DetailActivity.this);
-                final EditText pwd = new EditText(DetailActivity.this);
-                alert_confirm.setView(pwd);
+                final EditText input_pwd = new EditText(DetailActivity.this); //입력하는 비밀번호
+
+                alert_confirm.setView(input_pwd);
                 alert_confirm.setMessage("글을 삭제하시겠습니까? 비밀번호를 입력해 주세요.").setCancelable(false).setPositiveButton("확인",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                String value = pwd.getText().toString();
+                                pwd_confirm = input_pwd.getText().toString();
 
-                                Log.d("-------제발!!후후루루루-성공!", value.toString()  );
-                                delete();
+                                Log.d("-------제발!!후후루루루-성공!", pwd_confirm.toString()  );
+                                Log.d("-------제발!!후후루루루-성공!", pwd.toString()  );
+
+                                    delete();
                             }
                         }).setNegativeButton("취소",
                         new DialogInterface.OnClickListener() {
@@ -160,6 +168,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView txt_title = (TextView) findViewById(R.id.txt_title);
         TextView txt_content = (TextView) findViewById(R.id.txt_content);
         TextView txt_like = (TextView) findViewById(R.id.txt_like);
+        TextView txt_lik = (TextView) findViewById(R.id.txt_view);
         txt_title.setFocusable(false);
         txt_title.setClickable(false);
         txt_content.setFocusable(false);
@@ -181,6 +190,7 @@ public class DetailActivity extends AppCompatActivity {
         txt_title.setText(title);
         txt_content.setText(content);
         txt_like.setText(string_like);
+
 
         Log.d("-------------제발!!-성공!", id.toString());
     }
@@ -204,6 +214,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
                 Log.d("좋아요 기능 성공!", string_like.toString());
+                Toast.makeText(getApplicationContext(),  adapter.items.size() + "개의 댓글이 있습니다.", Toast.LENGTH_LONG).show();
                 txt_like.setText(string_like);
                 setResult(RESULT_OK);
             }
@@ -259,13 +270,21 @@ public class DetailActivity extends AppCompatActivity {
                 .build();
 
         APIservice retrofitService = retrofit.create(APIservice.class);
-        Call<Post_CallBackItem> call = retrofitService.deleteTalk(no);
+        Call<Post_CallBackItem> call = retrofitService.deleteTalk(no, pwd_confirm);
         call.enqueue(new Callback<Post_CallBackItem>() {
             @Override
             public void onResponse(Call<Post_CallBackItem> call, Response<Post_CallBackItem> response) {
                 Log.d("------------글삭제 전송 성공", response.body().toString());
+                if (response.body().getMeta().getCode().toString().equals("100")){
+
+                    Toast.makeText(getApplicationContext(),  "비밀번호를 확인해 주세요.", Toast.LENGTH_LONG).show();}
+                    else {
                 setResult(RESULT_OK);
                 finish();
+                    Toast.makeText(getApplicationContext(),  id + "님의 글이 삭제되었습니다.", Toast.LENGTH_LONG).show();
+
+                }
+
             }
 
             @Override

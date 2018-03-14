@@ -58,7 +58,7 @@ public interface APIservice {
 
     @FormUrlEncoded //게시글 삭제
     @POST("delete_talk.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨
-    Call<Post_CallBackItem> deleteTalk(@Field("t_no") int t_no);
+    Call<Post_CallBackItem> deleteTalk(@Field("t_no") int t_no, @Field("input_pwd") String input_pwd);
 
 //    @Multipart
 //    @POST("insert.php")
