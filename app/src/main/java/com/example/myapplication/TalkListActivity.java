@@ -107,7 +107,7 @@ public class TalkListActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Talk_CallBackItem> call, Throwable t) {
-                Log.d("에러다 짜샤",t.getMessage());
+                Log.d("에러다 짜샤왜~~",t.getMessage());
             }
         });
     }

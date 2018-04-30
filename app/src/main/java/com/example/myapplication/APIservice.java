@@ -14,7 +14,7 @@ public interface APIservice {
     //public String I_URL = "http://cloud.marusoft.net/api/searchtime/";
     //public String I_URL = "http://searchapp.cafe24.com/searchtime/";
     //public String IMG_URL = I_URL + "image/";
-    public static final String API_URL = "http://ec2-13-231-109-116.ap-northeast-1.compute.amazonaws.com/";
+    public static final String API_URL = "http://ec2-52-197-152-13.ap-northeast-1.compute.amazonaws.com/";
 
 
 
@@ -35,14 +35,13 @@ public interface APIservice {
 
 
 
-    @GET("connect_new.php") // 게시글 목혹
+    @GET("connect_new.php") // 게시글 목록
     Call<Talk_CallBackItem> getTalk();
 
     @GET("connect_reply.php")  //댓글 목록
     Call<Reply_CallBackItem> getReply(
             @Query("r_t_no") int r_t_no
     );
-
 
     @FormUrlEncoded //게시글
     @POST("insert_new.php") //insert_php에 대한 리턴값을 받는 post_cllback item.   밑에 변수들은 insert_new에서만 신경쓰면 됨

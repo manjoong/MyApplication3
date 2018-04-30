@@ -130,6 +130,7 @@ public class WriteTalkActivity extends AppCompatActivity {
     }
 
 
+
 }
 
 
